@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tug'ilgan Kun Portfolio - ozo cha</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #FF69B4, #000000);
+            color: white;
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* Animatsiyali yurakcha va chaqmoqcha */
+        .heart {
+            position: absolute;
+            font-size: 3em;
+            animation: float 6s ease-in-out infinite;
+            color: #FF69B4;
+            text-shadow: 0 0 10px #FF69B4;
+        }
+        .spark {
+            position: absolute;
+            font-size: 3em;
+            animation: float 4s ease-in-out infinite reverse;
+            color: #000000;
+            text-shadow: 0 0 10px #000000;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+        .heart:nth-child(1) { left: 10%; animation-delay: 0s; top: 20%; }
+        .heart:nth-child(2) { left: 20%; animation-delay: 2s; top: 40%; }
+        .spark:nth-child(3) { left: 80%; animation-delay: 1s; top: 30%; }
+        .spark:nth-child(4) { left: 90%; animation-delay: 3s; top: 60%; }
+        
+        /* Yulduzlar animatsiyasi */
+        .star {
+            position: absolute;
+            font-size: 2em;
+            pointer-events: none;
+            animation: fly 3s ease-out forwards;
+            z-index: 10;
+        }
+        @keyframes fly {
+            0% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-200px) translateX(100px) rotate(360deg) scale(0.5);
+            }
+        }
+        
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: url('https://via.placeholder.com/1920x1080/FF69B4/000000?text=Happy+Birthday+Banner') no-repeat center/cover;
+            position: relative;
+            animation: fadeIn 2s ease-in;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .birthday-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            object-fit: cover;
+            border: 5px solid #000000;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            animation: pulse 2s infinite;
+        }
+        h1 {
+            font-size: 5em;
+            margin: 20px 0;
+            color: #000000;
+            text-shadow: 2px 2px 4px #FF69B4;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .cake {
+            font-size: 4em;
+            margin: 20px 0;
+            animation: bounce 1s infinite;
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        .bos-gijja-btn {
+            background: #000000;
+            color: #FF69B4;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.8em;
+            border-radius: 10px;
+            cursor: pointer;
+            margin: 10px 0;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .bos-gijja-btn:hover {
+            background: #FF69B4;
+            color: #000000;
+            transform: scale(1.1);
+        }
+        .projects {
+            padding: 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background: rgba(255, 105, 180, 0.3);
+            border: 3px solid #000000;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-15px) rotate(3deg);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+            animation: shake 0.5s;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-8px); }
+            75% { transform: translateX(8px); }
+        }
+        .project-image {
+            width: 100%;
+            height: 200px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+        button {
+            background: #000000;
+            color: #FF69B4;
+            border: none;
+            padding: 15px 25px;
+            font-size: 1.5em;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #FF69B4;
+            color: #000000;
+            animation: wiggle 0.5s;
+        }
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(8deg); }
+            75% { transform: rotate(-8deg); }
+        }
+        footer {
+            text-align: center;
+            padding: 30px;
+            background: #000000;
+            animation: fadeIn 2s ease-in 1s both;
+            font-size: 1.2em;
+        }
+
+        /* Mobil responsive dizayn */
+        @media (max-width: 768px) {
+            .heart, .spark {
+                font-size: 2em; /* Kichikroq animatsiyalar mobil uchun */
+            }
+            header {
+                height: 80vh; /* Qisqaroq header mobil uchun */
+                padding: 0 20px;
+            }
+            .birthday-image {
+                width: 200px;
+                height: 200px; /* Kichikroq rasm */
+            }
+            h1 {
+                font-size: 3em; /* Kichikroq shrift */
+            }
+            .cake {
+                font-size: 3em;
+            }
+            .bos-gijja-btn, button {
+                padding: 12px 20px;
+                font-size: 1.2em; /* Kattaroq touch uchun, lekin mos */
+            }
+            .projects {
+                padding: 40px 20px; /* Kamroq padding */
+                grid-template-columns: 1fr; /* Bitta ustun mobil uchun */
+                gap: 20px;
+            }
+            .project-card {
+                padding: 20px; /* Kichikroq padding */
+            }
+            .project-image {
+                height: 10px; /* Kichikroq rasm */
+            }
+            footer {
+                padding: 20px;
+                font-size: 1em;
+            }
+            /* Animatsiyalarni sekinlashtirish mobil yukini kamaytirish uchun */
+            @keyframes float {
+                0%, 100% { transform: translateY(0px) rotate(0deg); }
+                50% { transform: translateY(-15px) rotate(5deg); } /* Kamroq harakat */
+            }
+            .star {
+                font-size: 1.5em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2.5em;
+            }
+            .birthday-image {
+                width: 150px;
+                height: 150px;
+            }
+            .projects {
+                padding: 30px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Yurakcha va chaqmoqcha -->
+    <div class="heart">💖</div>
+    <div class="heart">💖</div>
+    <div class="spark">⚡</div>
+    <div class="spark">⚡</div>
+     <div class="spark">🌸</div>
+    <div class="spark">🌸</div>
+    <div class="spark">🌙</div>
+    <div class="spark">🌙</div>
+    
+    <header>
+        <img src="ozo 3.jpg" alt="Tug'ilgan kun rasmi" class="birthday-image">
+        <h1>Tug'ilgan Kuning Bilan! 🎂</h1>
+        <button class="bos-gijja-btn" onclick="createStars()">Bos Gijja</button>
+        <div class="cake">🍰</div>
+        <p>Ozo gijjacha, sen uchun maxsus portfolio – ilhom va do'stlik bilan!</p>
+        <button onclick="scrollToProjects()">Haddiyalarni Ko'rish</button>
+    </header>
+    
+    <section class="projects" id="projects">
+        <div class="project-card">
+            <img src="ozo 1.jpg" alt="Loyiha 1 Rasm" class="project-image">
+            <h2>Haddiyot 1</h2>
+            <p>Bayramona web dizayn – pushti yuraklar bilan.</p>
+            <button>Detallar</button>
+        </div>
+        <div class="project-card">
+            <img src="ozo 2.jpg" alt="Loyiha 2 Rasm" class="project-image">
+            <h2>Haddiyot 2</h2>
+            <p>Animatsiyali video – tort va musiqalar.</p>
+            <button>Detallar</button>
+        </div>
+        <div class="project-card">
+            <img src="ozo the.jpg" alt="Loyiha 3 Rasm" class="project-image">
+            <h2>Haddiyot 3</h2>
+            <p>Portfolio yangilanishi – do'stlik uchun!</p>
+            <button>Detallar</button>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 ozodaxon. Tug'ilgan kuning muborak bo'lsin! 💖⚡</p>
+    </footer>
+
+    <script>
+        function scrollToProjects() {
+            document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        function createStars() {
+            const numStars = 20;
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.innerHTML = '⭐';
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = '50%';
+                star.style.color = Math.random() > 0.5 ? '#FF69B4' : '#000000';
+                star.style.animationDelay = Math.random() * 0.5 + 's';
+                star.style.transform = `translateX(${Math.random() * 200 - 100}px)`;
+                document.body.appendChild(star);
+                
+                setTimeout(() => {
+                    star.remove();
+                }, 3000);
+            }
+        }
+        
+        // Har bir card yuklanganda animatsiya
+        window.addEventListener('load', () => {
+            document.querySelectorAll('.project-card').forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(50px)';
+                setTimeout(() => {
+                    card.style.transition = 'opacity 0.7s, transform 0.7s';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 300);
+            });
+        });
+    </script>
+</body>
+</html>
